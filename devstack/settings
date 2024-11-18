@@ -1,3 +1,2 @@
-KUBERNETES_PLUGIN_ENABLED=True
 KUBERNETES_VERSION=v1.25.0
-KUBECTL_INSTALL_URL="https://storage.googleapis.com/kubernetes-release/release/${KUBERNETES_VERSION}/bin/linux/amd64/kubectl"
+KUBECTL_API_URL="https://kubernetes.default.svc"
