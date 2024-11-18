@@ -1,2 +1,3 @@
 KUBERNETES_VERSION=v1.25.0
 KUBECTL_API_URL="https://kubernetes.default.svc"
+KUBE_TOKEN="YOUR_KUBE_TOKEN_HERE"

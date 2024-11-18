@@ -1,34 +1,24 @@
-function plugin_install {
-    echo "Installazione di Kubernetes"
+KUBE_VERSION=1.25.0
+KUBE_API_URL="https://kubernetes.default.svc"
+KUBE_TOKEN="YOUR_KUBE_TOKEN_HERE"
 
-    sudo curl -LO $KUBECTL_INSTALL_URL
-    sudo chmod +x kubectl
-    sudo mv kubectl /usr/local/bin/
-
-    sudo apt-get update
-    sudo apt-get install -y kubeadm kubelet kubernetes-cni
+function install_kubernetes() {
+    echo "Installing Kubernetes on OpenStack..."
+    
+    curl -LO https://dl.k8s.io/release/v$KUBE_VERSION/bin/linux/amd64/kubelet
+    curl -LO https://dl.k8s.io/release/v$KUBE_VERSION/bin/linux/amd64/kubectl
+    chmod +x kubelet kubectl
+    
 }
 
-function plugin_configure {
-    echo "Configurazione di Kubernetes con OpenStack"
-
-    openstack network create kubernetes-network
-    openstack subnet create --network kubernetes-network --subnet-range 192.168.1.0/24 kubernetes-subnet
-
-    openstack project create --description "Kubernetes Project" k8s-project
-
+function configure_kubernetes_service() {
+    echo "Configuring Kubernetes service on OpenStack..."
+    
 }
 
-function plugin_start {
-    echo "Avvio del cluster Kubernetes"
-
-    openstack server create --image <image-id> --flavor <flavor-id> \
-	    --network kubernetes-network --key-name <key-name> master-node
-    for i in $(seq 1 $K8S_NODE_COUNT); do
-	    openstack server create --image<image-id> --flavor <flavor-id> \
-	        --network kubernetes-network --key-name <key-name> worker-node-$i
-    done
-
-    echo "Configura Kubernetes usando kubeadm"
-
+function install_k8s_plugin() {
+    install_kubernetes
+    configure_kubernetes_service
 }
+
+install_k8s_plugin
