@@ -1,3 +1,8 @@
-KUBERNETES_VERSION=v1.25.0
-KUBECTL_API_URL="https://kubernetes.default.svc"
-KUBE_TOKEN="YOUR_KUBE_TOKEN_HERE"
+# settings openstack
+enable_service openstack-plugin-flask
+
+# used directories
+PLUGIN_DIR=$DEST/openstack-plugin-flask
+APP_DIR=$PLUGIN_DIR/app
+SERVICE_DIR=$PLUGIN_DIR7devstack/service
+SYSTEMD_DIR=/etc/systemd/system
