@@ -35,3 +35,6 @@ You can visit the Flask application at:
 http://<devstack_host>:5234
 ```
 It will display a "Hello, World!" message.
+
+Questo progetto include codice dal repository [simona2606/openstack-plugin-flask](https://github.com/simona2606/openstack-plugin-flask). 
+Il codice originale è stato modificato per adattarsi al contesto del progetto.
