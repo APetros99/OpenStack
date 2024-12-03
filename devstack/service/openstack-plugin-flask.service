@@ -1,12 +1,13 @@
 [Unit]
-Description=Flask Application for OpenStack
+Description=Openstack Plugin Flask
 After=network.target
 
 [Service]
-User=nobody
-WorkingDirectory=/home/petros/devstack/app
-ExecStart=/home/petros/devstack/app/venv/bin/python /home/petros/devstack/app/app.py
-Restart=always
+User=stack
+Type=simple
+WorkingDirectory=/opt/stack/openstack-plugin-flask
+ExecStart=/opt/stack/openstack-plugin-flask/app/venv/bin/python3 /opt/stack/openstack-plugin-flask/app/app.py
+Restart=on-failure
 
 [Install]
 WantedBy=multi-user.target

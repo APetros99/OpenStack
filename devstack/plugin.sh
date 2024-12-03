@@ -3,30 +3,24 @@
 # Flask dependencies function
 function install_flask_dependencies {
     echo "Installing Flask and dependencies..."
-
-    # Ensure Python3 is available
-    if ! command -v python3 &> /dev/null; then
-        echo "Python3 not found! Please install Python3."
-        exit 1
-    fi
-
-    # Create venv if not exists
+    
+    # venv creation
     if [[ ! -d "$APP_DIR/venv" ]]; then
-        python3 -m venv "$APP_DIR/venv" || { echo "Failed to create venv"; exit 1; }
+        python3 -m venv "$APP_DIR/venv"
     fi
 
-    # Activate venv
-    source "$APP_DIR/venv/bin/activate" || { echo "Failed to activate venv"; exit 1; }
+    # venv activation
+    source "$APP_DIR/venv/bin/activate"
 
-    # Install requirements
+    # install requirements
     if [[ -f "$APP_DIR/requirements.txt" ]]; then
-        pip install -r "$APP_DIR/requirements.txt" || { echo "Failed to install dependencies"; deactivate; exit 1; }
+        pip install -r "$APP_DIR/requirements.txt" || { echo "Failed to install dependencies"; exit 1; }
     else
         echo "requirements.txt not found!"
-        deactivate
         exit 1
     fi
 
+    # venv deactivation
     deactivate
 }
 
@@ -75,7 +69,6 @@ if is_service_enabled openstack-plugin-flask; then
     fi
 
     if [[ "$1" == "clean" ]]; then
-        echo_summary "Cleaning up Flask service..."
         sudo rm "$SYSTEMD_DIR/openstack-plugin-flask.service"
     fi
 fi
