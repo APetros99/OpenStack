@@ -1,4 +1,5 @@
 # settings openstack
+define_plugin openstak-plugin-flask
 enable_service openstack-plugin-flask
 
 # used directories
