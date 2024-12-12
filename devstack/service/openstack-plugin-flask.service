@@ -5,8 +5,8 @@ After=network.target
 [Service]
 User=petros
 Type=simple
-WorkingDirectory=/opt/stack/openstack-plugin-flask
-ExecStart=/opt/stack/openstack-plugin-flask/app/venv/bin/python3 /opt/stack/openstack-plugin-flask/app/app.py
+WorkingDirectory=/opt/stack/OpenStack
+ExecStart=/opt/stack/OpenStack/app/venv/bin/python3 /opt/stack/OpenStack/app/app.py
 Restart=on-failure
 
 [Install]
